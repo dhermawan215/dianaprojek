@@ -1,6 +1,9 @@
 <?php
 
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\HomeController;
+use App\Http\Controllers\CategoryProduct;
 
 /*
 |--------------------------------------------------------------------------
@@ -17,6 +20,9 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-
-
-Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+Route::prefix('admin')->middleware('auth', 'verified')->middleware('isadmin')
+    ->group(function () {
+        Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+        Route::resource('category', CategoryProduct::class);
+    });
+Auth::routes();

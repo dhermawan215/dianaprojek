@@ -20,7 +20,7 @@ class isadmin
         if (Auth::user() && Auth::user()->role == 'admin') {
             return $next($request);
         } else {
-            return \redirect()->route('welcome');
+            return \redirect('/');
         }
     }
 }
