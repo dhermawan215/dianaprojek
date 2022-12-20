@@ -64,7 +64,10 @@ class CategoryProduct extends Controller
      */
     public function edit($id)
     {
-        //
+        $data = Category::findOrFail($id);
+        return \view('pages.category.edit', [
+            'data' => $data
+        ]);
     }
 
     /**
@@ -74,9 +77,13 @@ class CategoryProduct extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(CategoryRequest $request, $id)
     {
-        //
+        $data = $request->all();
+        $category = Category::find($id);
+        $category->update($data);
+
+        return \redirect()->route('category.index')->with('info', 'data berhasil diupdate');
     }
 
     /**
@@ -87,6 +94,9 @@ class CategoryProduct extends Controller
      */
     public function destroy($id)
     {
-        //
+        $category = Category::findOrFail($id);
+        $category->delete();
+
+        return \redirect()->route('category.index')->with('danger', 'data berhasil dihapus');
     }
 }

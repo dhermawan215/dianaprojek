@@ -37,7 +37,18 @@
                                             <tr>
                                                 <td>{{ $no++ }}</td>
                                                 <td>{{ $row->category_name }}</td>
-                                                <td></td>
+                                                <td>
+                                                    <div class="d-flex">
+                                                        <a href="{{ route('category.edit', $row->id) }}"
+                                                            class="text-primary"><i class="bi bi-pencil-square"></i></a>
+                                                        <form action="{{ route('category.destroy', $row->id) }}"
+                                                            method="post">
+                                                            {!! method_field('delete') . csrf_field() !!}
+                                                            <button type="submit" class="border-0 ml-3 show_confirm"><i
+                                                                    class="bi bi-trash"></i></button>
+                                                        </form>
+                                                    </div>
+                                                </td>
                                             </tr>
                                         @endforeach
                                     </tbody>
@@ -80,6 +91,25 @@
         <script>
             $(document).ready(function() {
                 $('#example').DataTable();
+
+                $('.show_confirm').click(function(event) {
+                    var form = $(this).closest("form");
+                    var name = $(this).data("name");
+                    event.preventDefault();
+                    Swal.fire({
+                        title: 'Are you sure?',
+                        text: "You won't be able to revert this!",
+                        icon: 'warning',
+                        showCancelButton: true,
+                        confirmButtonColor: '#3085d6',
+                        cancelButtonColor: '#d33',
+                        confirmButtonText: 'Yes, delete it!'
+                    }).then((willDelete) => {
+                        if (willDelete) {
+                            form.submit();
+                        }
+                    });
+                });
             });
 
             const success = '{{ Session::has('success') }}';
@@ -111,7 +141,7 @@
                     icon: 'error',
                     title: 'Oops...',
                     text: msgDanger,
-                })
+                });
             }
         </script>
     @endpush
