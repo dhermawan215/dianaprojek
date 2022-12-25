@@ -10,7 +10,7 @@
             </a>
             <a href="{{ route('category.index') }}" class="list-group-item list-group-item-action py-2 ripple"><i
                     class="fas fa-lock fa-fw me-3"></i><span>Kategori Produk</span></a>
-            <a href="#" class="list-group-item list-group-item-action py-2 ripple"><i
+            <a href="{{ route('transaction.index') }}" class="list-group-item list-group-item-action py-2 ripple"><i
                     class="fas fa-chart-line fa-fw me-3"></i><span>Transaksi</span></a>
             <a href="#" class="list-group-item list-group-item-action py-2 ripple">
                 <i class="fas fa-chart-pie fa-fw me-3"></i><span>User</span>
