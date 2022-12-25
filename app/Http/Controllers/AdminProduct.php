@@ -2,10 +2,12 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Requests\ProductRequest;
-use App\Models\Category;
 use App\Models\Product;
+use App\Models\Category;
+
+use Illuminate\Support\Str;
 use Illuminate\Http\Request;
+use App\Http\Requests\ProductRequest;
 
 class AdminProduct extends Controller
 {
@@ -16,7 +18,7 @@ class AdminProduct extends Controller
      */
     public function index()
     {
-        $product = Product::all();
+        $product = Product::with('categories')->get();
         return \view('pages.product.index', [
             'data' => $product
         ]);
@@ -47,17 +49,18 @@ class AdminProduct extends Controller
         if ($request->hasFile('picture')) {
             $images = $request->file('picture');
 
-            // $ext = $images->extension();
+            $ext = $images->extension();
             $img = $images->getClientOriginalName();
 
-            $file_name_str = str_replace(' ', '-', $img);
-            // mengkonversi nama file bila ada karakter 
-            $file_name_str = preg_replace('/[^A-Za-z0-9\-\_]/', '', $file_name_str);
-            //mengkonversi nama file bila ada karakter strip(-) dan plus(+) menjadi strip(-)
-            $file_name_str = preg_replace('/-+/', '-', $file_name_str);
+            $random = Str::random(15);
+            // $file_name_str = str_replace(' ', '-', $img);
+            // // mengkonversi nama file bila ada karakter 
+            // $file_name_str = preg_replace('/[^A-Za-z0-9\-\_]/', '', $file_name_str);
+            // //mengkonversi nama file bila ada karakter strip(-) dan plus(+) menjadi strip(-)
+            // $file_name_str = preg_replace('/-+/', '-', $file_name_str);
             //mendapatkan nama file yang sudah bersih dari karakter yang tidak diinginkan
-            $clean_name_file = date('Ymds') . '-' . $file_name_str;
-            $data['picture'] = $images->move('images', $clean_name_file);
+            $clean_name_file = date('Ymds') . '-' . $random . '.' . $ext;
+            $data['picture'] = $images->move('produk', $clean_name_file);
         }
         Product::create($data);
 
@@ -72,7 +75,8 @@ class AdminProduct extends Controller
      */
     public function show($id)
     {
-        //
+        $produk = Product::with('categories')->findOrFail($id);
+        return \view('pages.product.detail', ['data' => $produk]);
     }
 
     /**
@@ -83,7 +87,12 @@ class AdminProduct extends Controller
      */
     public function edit($id)
     {
-        //
+        $produk = Product::with('categories')->findOrFail($id);
+        $catgeory = Category::all();
+        return \view('pages.product.edit', [
+            'produk' => $produk,
+            'kategori' => $catgeory
+        ]);
     }
 
     /**
@@ -93,9 +102,27 @@ class AdminProduct extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(ProductRequest $request, $id)
     {
-        //
+        $data = $request->all();
+        $product = Product::findOrFail($id);
+        if ($request->hasFile('picture')) {
+            // menhapus foto sebelumnya
+            $path = \parse_url($product->picture);
+            \unlink(\public_path($path['path']));
+
+            $images = $request->file('picture');
+
+            $ext = $images->extension();
+            $img = $images->getClientOriginalName();
+
+            $random = Str::random(15);
+            $clean_name_file = date('Ymds') . '-' . $random . '.' . $ext;
+            $data['picture'] = $images->move('produk', $clean_name_file);
+        }
+
+        $product->update($data);
+        return \redirect()->route('product.index')->with('info', 'data berhasil diubah');
     }
 
     /**
@@ -106,6 +133,15 @@ class AdminProduct extends Controller
      */
     public function destroy($id)
     {
-        //
+        $product = Product::findOrFail($id);
+
+        // menhapus foto sebelumnya
+        $path = \parse_url($product->picture);
+        \unlink(\public_path($path['path']));
+
+        //hapus data
+
+        $product->delete();
+        return \redirect()->route('product.index')->with('danger', 'data berhasil dihapus');
     }
 }

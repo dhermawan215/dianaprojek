@@ -26,6 +26,7 @@
                                         <tr>
                                             <th>No</th>
                                             <th>Nama</th>
+                                            <th>Kategori</th>
                                             <th>Aksi</th>
                                         </tr>
                                     </thead>
@@ -36,18 +37,20 @@
                                         @foreach ($data as $row)
                                             <tr>
                                                 <td>{{ $no++ }}</td>
-                                                <td>{{ $row->category_name }}</td>
+                                                <td>{{ $row->name }}</td>
+                                                <td>{{ $row->categories->category_name }}</td>
                                                 <td>
-                                                    <div class="d-flex">
+                                                    <div class="d-flex justify-content-center">
                                                         <a href="{{ route('product.edit', $row->id) }}"
                                                             class="text-primary"><i class="bi bi-pencil-square"></i></a>
                                                         <a href="{{ route('product.show', $row->id) }}"
-                                                            class="text-primary"><i class="bi bi-eye"></i></a>
+                                                            class="text-success ml-1"><i class="bi bi-eye"></i></a>
                                                         <form action="{{ route('product.destroy', $row->id) }}"
-                                                            method="post">
+                                                            method="POST">
                                                             {!! method_field('delete') . csrf_field() !!}
-                                                            <button type="submit" class="border-0 ml-3 show_confirm"><i
-                                                                    class="bi bi-trash"></i></button>
+                                                            <button type="submit"
+                                                                class="border-0 ml-3 show_confirm ml-1"><i
+                                                                    class="bi bi-trash text-danger"></i></button>
                                                         </form>
                                                     </div>
                                                 </td>
@@ -73,7 +76,7 @@
             $(document).ready(function() {
                 $('#example').DataTable();
 
-                $('.show_confirm').click(function(event) {
+                $('.show_confirm').click(function() {
                     var form = $(this).closest("form");
                     var name = $(this).data("name");
                     event.preventDefault();
@@ -86,7 +89,7 @@
                         cancelButtonColor: '#d33',
                         confirmButtonText: 'Yes, delete it!'
                     }).then((willDelete) => {
-                        if (willDelete) {
+                        if (willDelete.value) {
                             form.submit();
                         }
                     });

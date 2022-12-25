@@ -16,7 +16,7 @@
                                         <li class="breadcrumb-item" aria-current="page"><a class="text-decoration-none"
                                                 href="{{ route('product.index') }}">Produk</a>
                                         </li>
-                                        <li class="breadcrumb-item active" aria-current="page">Tambah Produk</li>
+                                        <li class="breadcrumb-item active" aria-current="page">Edit Produk</li>
                                     </ol>
                                 </nav>
                             </div>
@@ -57,19 +57,23 @@
                                 Formulir Tambah Produk
                             </div>
                             <div class="card-body">
-                                <form action="{{ route('product.store') }}" method="POST" enctype="multipart/form-data">
+                                <form action="{{ route('product.update', $produk->id) }}" method="POST"
+                                    enctype="multipart/form-data">
+                                    @method('PUT')
                                     @csrf
                                     <div class="mb-3">
                                         <label for="name" class="form-label">Nama Produk</label>
                                         <input type="text" class="form-control" id="name" name="name"
-                                            placeholder="masukan nama produk" value="{{ old('name') }}">
+                                            placeholder="masukan nama produk" value="{{ old('name') ?? $produk->name }}">
                                     </div>
 
                                     <div class="mb-3">
                                         <label for="Kategori Produk" class="form-label">Kategori Produk</label>
                                         <select name="category_id" id="Kategori produk" class="form-control">
-                                            <option selected disabled>-Pilih Kategori Produk-</option>
-                                            @foreach ($category as $data)
+                                            <option selected value="{{ $produk->categories->id }}">
+                                                {{ $produk->categories->category_name }}</option>
+                                            <option disabled>-Pilih Kategori Produk-</option>
+                                            @foreach ($kategori as $data)
                                                 <option value="{{ $data->id }}">{{ $data->category_name }}</option>
                                             @endforeach
                                         </select>
@@ -77,16 +81,22 @@
                                     <div class="mb-3">
                                         <label for="Deskripsi Produk" class="form-label">Deskripsi Produk</label>
                                         <textarea name="description" class="form-control" id="Deskripsi Produk" cols="20" rows="10"
-                                            placeholder="masukan deskripsi produk">{{ old('description') }}</textarea>
+                                            placeholder="masukan deskripsi produk">{{ old('description') ?? $produk->description }}</textarea>
                                     </div>
                                     <div class="mb-3">
                                         <label for="Harga" class="form-label">Harga</label>
                                         <input type="number" name="price" id="Harga" class="form-control"
-                                            placeholder="masukan harga dalam bentuk angka" value="{{ old('price') }}">
+                                            placeholder="masukan harga dalam bentuk angka"
+                                            value="{{ old('price') ?? $produk->price }}">
                                     </div>
                                     <div class="mb-3">
                                         <label for="Foto Produk" class="form-label">Foto Produk</label>
                                         <input type="file" name="picture" id="Foto Produk" class="form-control">
+                                    </div>
+                                    <div class="mb-3">
+                                        <label for="Foto Produk" class="form-label">Foto Produk Sebelumnya</label>
+                                        <img src="{{ asset($produk->picture) }}" alt="foto-produk" class=" form-control"
+                                            style="width: 250px">
                                     </div>
                                     <button type="submit" class="btn btn-primary">Simpan Data</button>
                                 </form>
