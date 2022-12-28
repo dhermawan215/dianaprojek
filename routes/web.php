@@ -19,7 +19,7 @@ use App\Http\Controllers\CategoryProduct;
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    return view('front.index');
 });
 
 Route::prefix('admin')->middleware('auth', 'verified')->middleware('isadmin')
