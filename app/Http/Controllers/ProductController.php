@@ -15,4 +15,12 @@ class ProductController extends Controller
             'produk' => $produk,
         ]);
     }
+
+    public function show($id)
+    {
+        $produk = Product::with('categories')->findOrFail($id);
+        return view('front.pages.produk-detail', [
+            'produk' => $produk
+        ]);
+    }
 }

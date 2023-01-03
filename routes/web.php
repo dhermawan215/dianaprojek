@@ -21,7 +21,8 @@ use App\Http\Controllers\ProductController;
 */
 
 Route::get('/', [DashboardController::class, 'index'])->name('dashboard.page');
-Route::get('/products', [ProductController::class, 'index'])->name('produk');
+Route::get('products', [ProductController::class, 'index'])->name('produk');
+Route::get('products/{products}', [ProductController::class, 'show'])->name('produk.show');
 
 Route::prefix('admin')->middleware('auth', 'verified')->middleware('isadmin')
     ->group(function () {
