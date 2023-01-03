@@ -6,6 +6,8 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\CategoryProduct;
+use App\Http\Controllers\DashboardController;
+use App\Http\Controllers\ProductController;
 
 /*
 |--------------------------------------------------------------------------
@@ -18,9 +20,8 @@ use App\Http\Controllers\CategoryProduct;
 |
 */
 
-Route::get('/', function () {
-    return view('front.index');
-});
+Route::get('/', [DashboardController::class, 'index'])->name('dashboard.page');
+Route::get('/products', [ProductController::class, 'index'])->name('produk');
 
 Route::prefix('admin')->middleware('auth', 'verified')->middleware('isadmin')
     ->group(function () {

@@ -9,3 +9,5 @@
 <link rel="stylesheet"
     href="https://fonts.googleapis.com/css2?family=Roboto:wght@100;200;300;400;500;700;900&display=swap">
 <link rel="stylesheet" href="{{ asset('front/template/assets/css/fontawesome.min.css') }}">
+<link href="{{ asset('css/app.css') }}" rel="stylesheet">
+<script src="{{ asset('js/app.js') }}" defer></script>
