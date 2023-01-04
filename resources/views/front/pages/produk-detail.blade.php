@@ -2,6 +2,11 @@
 
 @section('contents')
     <div class="container py-5">
+        <div class="row">
+            <div class="col-lg-12">
+                <h1 class="h2 pb-4">Produk Detail {{ $produk->name }}</h1>
+            </div>
+        </div>
         <!-- Open Content -->
         <section class="bg-light">
             <div class="container pb-5">
@@ -25,25 +30,11 @@
                                 <p>{{ $produk->description }}</p>
 
 
-                                <form action="" method="GET">
-                                    <input type="hidden" name="product-title" value="Activewear">
-                                    <div class="row">
-                                        <div class="col-auto">
-                                            <ul class="list-inline pb-3">
-                                                <li class="list-inline-item">Size :
-                                                    <input type="hidden" name="product-size" id="product-size"
-                                                        value="S">
-                                                </li>
-                                                <li class="list-inline-item"><span class="btn btn-success btn-size">S</span>
-                                                </li>
-                                                <li class="list-inline-item"><span class="btn btn-success btn-size">M</span>
-                                                </li>
-                                                <li class="list-inline-item"><span class="btn btn-success btn-size">L</span>
-                                                </li>
-                                                <li class="list-inline-item"><span
-                                                        class="btn btn-success btn-size">XL</span></li>
-                                            </ul>
-                                        </div>
+                                <form action="{{ route('chcekout', $produk->id) }}" method="GET">
+                                    @csrf
+
+                                    {{-- <div class="row">
+
                                         <div class="col-auto">
                                             <ul class="list-inline pb-3">
                                                 <li class="list-inline-item text-right">
@@ -59,15 +50,15 @@
                                                         id="btn-plus">+</span></li>
                                             </ul>
                                         </div>
-                                    </div>
+                                    </div> --}}
                                     <div class="row pb-3">
                                         <div class="col d-grid">
                                             <button type="submit" class="btn btn-success btn-lg" name="submit"
-                                                value="buy">Buy</button>
+                                                value="buy">Beli</button>
                                         </div>
                                         <div class="col d-grid">
                                             <button type="submit" class="btn btn-success btn-lg" name="submit"
-                                                value="addtocard">Add To Cart</button>
+                                                value="addtocard">Tambah ke keranjang</button>
                                         </div>
                                     </div>
                                 </form>
