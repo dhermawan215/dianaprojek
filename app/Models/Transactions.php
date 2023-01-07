@@ -13,10 +13,12 @@ class Transactions extends Model
     protected $table = "transaction";
 
     protected $fillable = [
+        'tr_no',
         'product_id',
         'user_id',
         'qty',
         'totals',
+        'address',
         'date_transaction',
         'receipt',
     ];

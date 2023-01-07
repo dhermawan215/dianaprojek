@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Models\Product;
+use App\Models\Transactions;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 
 
@@ -35,7 +37,15 @@ class TransactionController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $data = $request->all();
+        $date = Carbon::now();
+        $tr_no = \date('Ymd') . '/' . $request->user_id . '/' . \date('H') . $request->product_id . '/' . \date('ms');
+        $data['tr_no'] = $tr_no;
+        $data['date_transaction'] = $date->toDateString();
+
+        $trsc = Transactions::create($data);
+
+        return \redirect()->route('success');
     }
 
     /**
@@ -46,7 +56,10 @@ class TransactionController extends Controller
      */
     public function show($id)
     {
-        //
+        $transctionsSuccess = Transactions::with('product')->findOrFail($id);
+        return \view('front.pages.transaction-detail', [
+            'transaction' => $transctionsSuccess
+        ]);
     }
 
     /**
@@ -89,5 +102,15 @@ class TransactionController extends Controller
         return view('front.pages.checkout', [
             'produk' => $produk
         ]);
+    }
+
+    public function success()
+    {
+        return \view('front.pages.success');
+    }
+
+    public function uploadReceipt($id)
+    {
+        return view('');
     }
 }

@@ -103,6 +103,13 @@
                                 </div>
                             </div>
                         </form>
+                        <div class="row mb-0">
+                            <div class="col-md-8 offset-md-4">
+                                <a class="btn btn-link" href="/register">
+                                    {{ __('Register') }}
+                                </a>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
