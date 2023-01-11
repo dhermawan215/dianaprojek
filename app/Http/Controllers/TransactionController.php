@@ -6,6 +6,7 @@ use App\Models\Product;
 use App\Models\Transactions;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
+use Illuminate\Support\Str;
 
 
 class TransactionController extends Controller
@@ -56,7 +57,7 @@ class TransactionController extends Controller
      */
     public function show($id)
     {
-        $transctionsSuccess = Transactions::with('product')->findOrFail($id);
+        $transctionsSuccess = Transactions::with('product', 'user')->findOrFail($id);
         return \view('front.pages.transaction-detail', [
             'transaction' => $transctionsSuccess
         ]);
@@ -109,8 +110,21 @@ class TransactionController extends Controller
         return \view('front.pages.success');
     }
 
-    public function uploadReceipt($id)
+    public function uploadReceipt(Request $request, $id)
     {
-        return view('');
+        $data = $request->all();
+        $trsc = Transactions::findOrFail($id);
+
+        if ($request->hasFile('receipt')) {
+            $images = $request->file('receipt');
+
+            $ext = $images->extension();
+            $random = Str::random(15);
+
+            $clean_name_file = date('Ymds') . '-Transaksi-' . $random . '.' . $ext;
+            $data['receipt'] = $images->move('transaksi', $clean_name_file);
+        }
+        $trsc->update($data);
+        return \redirect()->route('transactions.show', $trsc->id);
     }
 }

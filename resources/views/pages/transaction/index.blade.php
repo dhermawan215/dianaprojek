@@ -19,11 +19,13 @@
                 <div class="row m-3">
                     <div class="col-xl-12 col-lg-12 col-md-12 mb-4">
                         <div class="card">
+                            <h4 class="h4 p-2 m-2">Tabel Data Transaksi</h4>
                             <div class="card-body">
                                 <table id="example" class="table table-striped" style="width:100%">
                                     <thead>
                                         <tr>
                                             <th>No</th>
+                                            <th>No Transaksi</th>
                                             <th>Tanggal Transaksi</th>
                                             <th>Produk</th>
                                             <th>Pemesan</th>
@@ -37,6 +39,7 @@
                                         @foreach ($data as $row)
                                             <tr>
                                                 <td>{{ $no++ }}</td>
+                                                <td>{{ $row->tr_no }}</td>
                                                 <td>{{ $row->date_transaction }}</td>
                                                 <td>{{ $row->product->name ?? 'data not found' }}</td>
                                                 <td>{{ $row->user->name ?? 'data not found' }}</td>

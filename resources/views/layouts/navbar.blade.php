@@ -9,8 +9,7 @@
 
         <!-- Brand -->
         <a class="navbar-brand" href="#">
-            <img src="https://mdbootstrap.com/img/logo/mdb-transaprent-noshadows.png" height="25" alt=""
-                loading="lazy" />
+            <p class="text-success fs-3">VioletaShop</p>
         </a>
 
 

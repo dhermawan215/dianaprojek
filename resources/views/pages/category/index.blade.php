@@ -8,6 +8,25 @@
                     <div class="col-lg-12 col-md-12 col-sm-12">
                         <div class="card border-0 shadow">
                             <div class="card-body">
+                                <nav style="--bs-breadcrumb-divider: url(&#34;data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='8' height='8'%3E%3Cpath d='M2.5 0L1 1.5 3.5 4 1 6.5 2.5 8l4-4-4-4z' fill='%236c757d'/%3E%3C/svg%3E&#34;);"
+                                    aria-label="breadcrumb">
+                                    <ol class="breadcrumb">
+                                        <li class="breadcrumb-item"><a href="#" class="text-decoration-none"><i
+                                                    class="fa fa-home" aria-hidden="true"></i> Dashboard Kategori Produk</a>
+                                        </li>
+
+                                    </ol>
+                                </nav>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+            <section>
+                <div class="row m-3">
+                    <div class="col-lg-12 col-md-12 col-sm-12">
+                        <div class="card border-0 shadow">
+                            <div class="card-body">
                                 <a href="#" class="btn btn-success" data-mdb-toggle="modal"
                                     data-mdb-target="#exampleModal"><i class="fa fa-plus" aria-hidden="true"></i> Tambah</a>
                             </div>
@@ -20,6 +39,7 @@
                 <div class="row m-3">
                     <div class="col-xl-12 col-lg-12 col-md-12 mb-4">
                         <div class="card">
+                            <h4 class="h4 p-2 m-2">Data Kategori Produk</h4>
                             <div class="card-body">
                                 <table id="example" class="table table-striped" style="width:100%">
                                     <thead>

@@ -31,7 +31,7 @@ Route::prefix('trsc')->middleware('auth', 'verified')
     ->group(function () {
         Route::resource('transactions', TransactionController::class);
         Route::get('checkout/{checkout}', [TransactionController::class, 'checkout'])->name('chcekout');
-        Route::get('receipt/{receipt}', [TransactionController::class, 'uploadReceipt'])->name('receipt');
+        Route::put('receipt/{receipt}', [TransactionController::class, 'uploadReceipt'])->name('receipt');
         Route::get('success', [TransactionController::class, 'success'])->name('success');
         Route::get('profiles', [ProfilesController::class, 'index']);
     });
