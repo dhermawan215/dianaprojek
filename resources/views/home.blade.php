@@ -21,7 +21,7 @@
                                         </div>
                                     </div>
                                     <div class="align-self-center">
-                                        <h2 class="h1 mb-0">18,000</h2>
+                                        <h2 class="h1 mb-0">{{ $produk }}</h2>
                                     </div>
                                 </div>
                             </div>
@@ -40,7 +40,7 @@
                                         </div>
                                     </div>
                                     <div class="align-self-center">
-                                        <h2 class="h1 mb-0">84,695</h2>
+                                        <h2 class="h1 mb-0">{{ $category }}</h2>
                                     </div>
                                 </div>
                             </div>
@@ -54,14 +54,14 @@
                                 <div class="d-flex justify-content-between p-md-1">
                                     <div class="d-flex flex-row">
                                         <div class="align-self-center">
-                                            <h2 class="h1 mb-0 me-4">$76,456.00</h2>
+                                            <h2 class="h1 mb-0 me-4">Rp.{{ number_format($trs_success, 2) }}</h2>
                                         </div>
                                         <div>
-                                            <h4>Total Transaksi</h4>
+                                            <h4>Total Transaksi Sukses</h4>
                                         </div>
                                     </div>
                                     <div class="align-self-center">
-                                        <i class="fas fa-wallet text-danger fa-3x"></i>
+                                        <i class="fas fa-wallet text-success fa-3x"></i>
                                     </div>
                                 </div>
                             </div>
@@ -73,15 +73,15 @@
                                 <div class="d-flex justify-content-between p-md-1">
                                     <div class="d-flex flex-row">
                                         <div class="align-self-center">
-                                            <h2 class="h1 mb-0 me-4">$36,000.00</h2>
+                                            <h2 class="h1 mb-0 me-4">Rp.{{ number_format($trs_pending, 2) }}</h2>
                                         </div>
                                         <div>
-                                            <h4>Total User</h4>
+                                            <h4>Total Transaksi Pending</h4>
 
                                         </div>
                                     </div>
                                     <div class="align-self-center">
-                                        <i class="fa fa-user text-success fa-3x"></i>
+                                        <i class="fas fa-wallet text-danger fa-3x"></i>
                                     </div>
                                 </div>
                             </div>

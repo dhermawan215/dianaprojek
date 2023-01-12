@@ -2,6 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Category;
+use App\Models\Product;
+use App\Models\Transactions;
 use Illuminate\Http\Request;
 
 class HomeController extends Controller
@@ -23,6 +26,15 @@ class HomeController extends Controller
      */
     public function index()
     {
-        return view('home');
+        $produk = Product::all()->count();
+        $kategori = Category::all()->count();
+        $transaksiSuccess = Transactions::where('status', 1)->sum('totals');
+        $transaksiPending = Transactions::where('status', 0)->sum('totals');
+        return view('home', [
+            'produk' => $produk,
+            'category' => $kategori,
+            'trs_success' => $transaksiSuccess,
+            'trs_pending' => $transaksiPending
+        ]);
     }
 }
