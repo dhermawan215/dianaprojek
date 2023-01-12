@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\TransactionReceiptRequest;
 use App\Models\Product;
 use App\Models\Transactions;
 use Carbon\Carbon;
@@ -110,7 +111,7 @@ class TransactionController extends Controller
         return \view('front.pages.success');
     }
 
-    public function uploadReceipt(Request $request, $id)
+    public function uploadReceipt(TransactionReceiptRequest $request, $id)
     {
         $data = $request->all();
         $trsc = Transactions::findOrFail($id);

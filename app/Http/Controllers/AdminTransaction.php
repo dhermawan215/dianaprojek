@@ -50,7 +50,10 @@ class AdminTransaction extends Controller
      */
     public function show($id)
     {
-        //
+        $transctions = Transactions::with('product', 'user')->findOrFail($id);
+        return \view('pages.transaction.transaction-detail', [
+            'transaction' => $transctions
+        ]);
     }
 
     /**
@@ -73,7 +76,10 @@ class AdminTransaction extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $data = $request->all();
+        $transaction = Transactions::findOrFail($id);
+        $transaction->update($data);
+        return \redirect()->route('transaction.show', $transaction->id)->with('info', 'Status Transaksi Berhasil Diubah');
     }
 
     /**

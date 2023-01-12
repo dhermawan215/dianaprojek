@@ -28,6 +28,8 @@
     <script src="{{ asset('js/jquery.dataTables.min.js') }}"></script>
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
+    @include('layouts.sweet')
+
     @stack('scripts')
 </body>
 

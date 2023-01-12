@@ -21,6 +21,7 @@ class Transactions extends Model
         'address',
         'date_transaction',
         'receipt',
+        'status'
     ];
 
     public function product()
