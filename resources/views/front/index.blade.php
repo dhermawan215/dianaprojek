@@ -130,7 +130,7 @@
             <div class="row">
                 <div class="col-12 col-md-4 mb-4">
                     <div class="card h-100">
-                        <a href="shop-single.html">
+                        <a href="{{ route('produk') }}">
                             <img src="{{ asset('assets/aset1.jpeg') }}" class="card-img-top" alt="Produk Unggulan 1"
                                 height="400px">
                         </a>
@@ -149,7 +149,7 @@
                 </div>
                 <div class="col-12 col-md-4 mb-4">
                     <div class="card h-100">
-                        <a href="shop-single.html">
+                        <a href="{{ route('produk') }}">
                             <img src="{{ asset('assets/aset2.jpeg') }}" class="card-img-top" alt="Produk Unggulan 2"
                                 height="400px">
                         </a>
@@ -167,7 +167,7 @@
                 </div>
                 <div class="col-12 col-md-4 mb-4">
                     <div class="card h-100">
-                        <a href="shop-single.html">
+                        <a href="{{ route('produk') }}">
                             <img src="{{ asset('assets/aset3.jpeg') }}" class="card-img-top" alt="Produk Unggulan 3"
                                 height="400px">
                         </a>

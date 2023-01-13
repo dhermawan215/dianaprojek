@@ -98,34 +98,34 @@
 
 
     </div>
+    @push('cscripts')
+        <script>
+            $(document).ready(function() {
+                qty();
+            });
+
+            function qty() {
+                const price = "{{ $produk->price }}";
+                const qty = $("#form1").val();
+                let totals = price * qty;
+                $('#totals').val(totals);
+                $("#btn1").click(function(e) {
+                    e.preventDefault();
+
+                    const qty = $("#form1").val();
+                    let totals = price * qty;
+                    $('#totals').val(totals);
+
+                });
+                $("#btn2").click(function(e) {
+                    e.preventDefault();
+
+                    const qty = $("#form1").val();
+                    let totals = price * qty;
+                    $('#totals').val(totals);
+
+                });
+            }
+        </script>
+    @endpush
 @endsection
-@push('cscripts')
-    <script>
-        $(document).ready(function() {
-            qty();
-        });
-
-        function qty() {
-            const price = "{{ $produk->price }}";
-            const qty = $("#form1").val();
-            let totals = price * qty;
-            $('#totals').val(totals);
-            $("#btn1").click(function(e) {
-                e.preventDefault();
-
-                const qty = $("#form1").val();
-                let totals = price * qty;
-                $('#totals').val(totals);
-
-            });
-            $("#btn2").click(function(e) {
-                e.preventDefault();
-
-                const qty = $("#form1").val();
-                let totals = price * qty;
-                $('#totals').val(totals);
-
-            });
-        }
-    </script>
-@endpush

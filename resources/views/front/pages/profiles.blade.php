@@ -10,13 +10,13 @@
         <!-- Open Content -->
         <section class="bg-light">
             <div class="container pb-5">
-                <div class="row">
+                {{-- <div class="row">
                     <div class="col-lg-12 col-md-12">
                         <div class="flex mt-4">
                             <a href="" class="btn btn-success">Akun Anda</a>
                         </div>
                     </div>
-                </div>
+                </div> --}}
                 <div class="row">
                     <div class="col-lg-12 mt-4">
                         <h5 class="h5 text-primary fw-semibold">Data transaksi anda</h5>

@@ -11,6 +11,14 @@
         <section class="bg-light">
             <div class="container pb-5">
                 <div class="row">
+                    <div class="col-lg-4 mt-2 p-2">
+
+                        <a href="{{ route('profiles.index') }}" class="text-danger"><i class="fa fa-arrow-circle-left ml-2"
+                                aria-hidden="true"></i>Back</a>
+
+                    </div>
+                </div>
+                <div class="row">
                     <div class="col-lg-5 mt-5">
                         <div class="card mb-3">
                             <img class="card-img img-fluid" src="{{ asset($transaction->product->picture) }}"
